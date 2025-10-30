@@ -1,0 +1,180 @@
+:root {
+  /* Ocean Professional theme */
+  --ocean-primary: #2563EB;
+  --ocean-secondary: #F59E0B;
+  --ocean-success: #F59E0B;
+  --ocean-error: #EF4444;
+  --ocean-bg: #f9fafb;
+  --ocean-surface: #ffffff;
+  --ocean-text: #111827;
+
+  /* Screen palette derived from Figma JSON and design notes */
+  --bg-canvas: #252525;        /* background.color_ref color_252525 */
+  --text-primary: #F4F4F4;
+  --text-card: #222222;
+
+  --chip-bg: #3A3A3A;
+  --icon-on-dark: #FFFFFF;
+
+  --card-red: #F6A8A2;
+  --card-green: #99E0B2;
+  --card-yellow: #F6E58D;
+  --card-cyan: #A6E7F1;
+  --card-purple: #BDA6F6;
+
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  --fab-shadow: 0 6px 18px rgba(0,0,0,0.25);
+
+  --radius-12: 12px;
+
+  --container-max: 414px;
+  --gutter: 24px;
+  --gap-md: 16px;
+
+  --title-size: 34px;
+  --title-line: 40px;
+  --title-weight: 700;
+
+  --card-text-size: 17px;
+  --card-text-weight: 600;
+  --card-line-height: 1.35;
+
+  --focus-ring: 2px solid #8AC6FF;
+  --focus-ring-thick: 3px solid #8AC6FF;
+}
+
+/* CSS Reset (minimal) */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Root container */
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* App bar (header) reflects Figma spacing and sizes */
+.app-bar {
+  width: 100%;
+  max-width: var(--container-max);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gutter);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--title-size);
+  line-height: var(--title-line);
+  font-weight: var(--title-weight);
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+/* Header action buttons */
+.actions {
+  display: flex;
+  gap: 8px; /* Figma gap between 50x50 buttons */
+}
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: var(--radius-12);
+  background: var(--chip-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-on-dark);
+  cursor: pointer;
+  transition: background 150ms ease, transform 60ms ease;
+  box-shadow: none;
+}
+.icon-btn:hover { background: #474747; }
+.icon-btn:active { transform: scale(0.98); }
+.icon-btn:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+
+/* Content column */
+.content {
+  width: 100%;
+  max-width: var(--container-max);
+  padding: 0 var(--gutter) 96px; /* bottom padding for FAB clearance */
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+/* Cards (Rectangles with radius 12) */
+.card {
+  padding: 20px;
+  border-radius: var(--radius-12);
+  color: var(--text-card);
+  box-shadow: var(--card-shadow);
+}
+
+.card-text {
+  margin: 0;
+  font-size: var(--card-text-size);
+  font-weight: var(--card-text-weight);
+  line-height: var(--card-line-height);
+}
+
+/* Individual card fills mapped from design notes */
+.card-red { background: var(--card-red); }
+.card-green { background: var(--card-green); }
+.card-yellow { background: var(--card-yellow); }
+.card-cyan { background: var(--card-cyan); }
+.card-purple { background: var(--card-purple); }
+
+/* FAB (Ellipse 1: 70x70, add icon 28px) */
+.fab {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: var(--chip-bg);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--fab-shadow);
+  cursor: pointer;
+  transition: background 150ms ease, transform 60ms ease;
+  z-index: 10;
+}
+.fab:hover { background: #4A4A4A; }
+.fab:active { transform: scale(0.98); }
+.fab:focus-visible { outline: var(--focus-ring-thick); outline-offset: 3px; }
+
+/* Center the 414px column on wider screens */
+@media (min-width: 600px) {
+  .app-bar, .content { max-width: var(--container-max); }
+}
